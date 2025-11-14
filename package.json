@@ -2,6 +2,7 @@
   "name": "batik-app",
   "version": "1.0.0",
   "private": true,
+   "homepage": "https://alifirdaus-0.github.io/YOUR-REPO-NAME",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
