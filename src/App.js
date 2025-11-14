@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; import './index.css';
 import { ShoppingCart, Search, User, Heart, Star, Menu, X, Filter, ChevronDown, Plus, Minus, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Send } from 'lucide-react';
 
 const App = () => {
