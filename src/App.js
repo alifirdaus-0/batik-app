@@ -1001,7 +1001,7 @@ const App = () => {
 };
 
 // Add Leaf icon since it's not in lucide-react
-import React from 'react';
+
 
 const Leaf = (props) => (
   <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
