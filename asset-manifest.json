@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/YOUR-REPO-NAME/static/css/main.2ad592c5.css",
-    "main.js": "/YOUR-REPO-NAME/static/js/main.66456f4d.js",
-    "index.html": "/YOUR-REPO-NAME/index.html",
-    "main.2ad592c5.css.map": "/YOUR-REPO-NAME/static/css/main.2ad592c5.css.map",
-    "main.66456f4d.js.map": "/YOUR-REPO-NAME/static/js/main.66456f4d.js.map"
+    "main.css": "/batik-app/static/css/main.2ad592c5.css",
+    "main.js": "/batik-app/static/js/main.66456f4d.js",
+    "index.html": "/batik-app/index.html",
+    "main.2ad592c5.css.map": "/batik-app/static/css/main.2ad592c5.css.map",
+    "main.66456f4d.js.map": "/batik-app/static/js/main.66456f4d.js.map"
   },
   "entrypoints": [
     "static/css/main.2ad592c5.css",
