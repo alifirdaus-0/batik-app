@@ -1,12 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-
-
+import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, User, Heart, Star, Menu, X, Filter, ChevronDown, Plus, Minus, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Send } from 'lucide-react';
 
 const App = () => {
