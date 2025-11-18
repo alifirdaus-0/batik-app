@@ -2,8 +2,8 @@
   "name": "batik-app",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite", // atau "react-scripts start" jika menggunakan Create React App
-    "build": "vite build", // atau "react-scripts build"
+    "dev": "vite", 
+    "build": "vite build", 
     "preview": "vite preview"
   },
   "dependencies": {
