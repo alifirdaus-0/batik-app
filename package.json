@@ -1,23 +1,19 @@
 {
   "name": "batik-app",
   "version": "1.0.0",
-  "private": true,
-   "homepage": "https://alifirdaus-0.github.io/batik-app",
+  "scripts": {
+    "dev": "vite", // atau "react-scripts start" jika menggunakan Create React App
+    "build": "vite build", // atau "react-scripts build"
+    "preview": "vite preview"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "lucide-react": "^0.294.0"
+    "lucide-react": "^0.263.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.14"
   }
 }
