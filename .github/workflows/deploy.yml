@@ -19,6 +19,59 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create missing files
+        run: |
+          # Create index.html if missing
+          if [ ! -f "index.html" ]; then
+            cat > index.html << 'EOL'
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>BatikCraft - Traditional Batik E-Commerce</title>
+            </head>
+            <body>
+              <div id="root"></div>
+              <script type="module" src="/src/main.jsx"></script>
+            </body>
+          </html>
+          EOL
+          fi
+
+          # Create main.jsx if missing
+          if [ ! -f "src/main.jsx" ]; then
+            cat > src/main.jsx << 'EOL'
+          import React from 'react'
+          import ReactDOM from 'react-dom/client'
+          import App from './App.js'
+          import './index.css'
+
+          ReactDOM.createRoot(document.getElementById('root')).render(
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>,
+          )
+          EOL
+          fi
+
+          # Create vite.config.js if missing
+          if [ ! -f "vite.config.js" ]; then
+            cat > vite.config.js << 'EOL'
+          import { defineConfig } from 'vite'
+          import react from '@vitejs/plugin-react'
+
+          export default defineConfig({
+            plugins: [react()],
+            base: '/batik-app/',
+            build: {
+              outDir: 'dist'
+            }
+          })
+          EOL
+          fi
+
       - name: Build project
         run: npm run build
 
@@ -26,4 +79,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: build
+          folder: dist  # Ganti dari 'build' ke 'dist' untuk Vite
