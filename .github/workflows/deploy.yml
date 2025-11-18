@@ -21,17 +21,12 @@ jobs:
 
       - name: Fix Leaf component in App.js
         run: |
-          # Backup original file
           cp src/App.js src/App.js.backup
-          
-          # Replace Leaf component with fixed version
-          sed -i '/const Leaf = (props) => (/,/^);/c\
-const Leaf = (props) => (\n  <svg \n    {...props} \n    viewBox="0 0 24 24" \n    fill="none" \n    stroke="currentColor" \n    strokeWidth="2"\n    strokeLinecap="round" \n    strokeLinejoin="round"\n  >\n    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />\n    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />\n  </svg>\n);' src/App.js
+          sed -i 's/const Leaf = (props) => (/const Leaf = (props) => (\n  <svg \n    {...props} \n    viewBox="0 0 24 24" \n    fill="none" \n    stroke="currentColor" \n    strokeWidth="2"\n    strokeLinecap="round" \n    strokeLinejoin="round"\n  >\n    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" \/>\n    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" \/>\n  <\/svg>/' src/App.js
 
-      - name: Create required files
+      - name: Create main.jsx
         run: |
-          # Create main.jsx dengan import yang benar
-          cat > src/main.jsx << 'EOL'
+          cat > src/main.jsx << 'EOF'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.js'
@@ -42,10 +37,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
-EOL
+EOF
 
-          # Create index.html
-          cat > index.html << 'EOL'
+      - name: Create index.html
+        run: |
+          cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,10 +55,11 @@ EOL
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-EOL
+EOF
 
-          # Create vite.config.js
-          cat > vite.config.js << 'EOL'
+      - name: Create vite.config.js
+        run: |
+          cat > vite.config.js << 'EOF'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -73,7 +70,7 @@ export default defineConfig({
     outDir: 'dist'
   }
 })
-EOL
+EOF
 
       - name: Build project
         run: npm run build
