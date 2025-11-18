@@ -1,3 +1,4 @@
+cat > tailwind.config.js << 'EOL'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'batik': {
+        batik: {
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
@@ -24,3 +25,4 @@ module.exports = {
   },
   plugins: [],
 }
+EOL
