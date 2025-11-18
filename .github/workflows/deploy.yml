@@ -19,58 +19,61 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Create missing files
+      - name: Fix Leaf component in App.js
         run: |
-          # Create index.html if missing
-          if [ ! -f "index.html" ]; then
-            cat > index.html << 'EOL'
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>BatikCraft - Traditional Batik E-Commerce</title>
-            </head>
-            <body>
-              <div id="root"></div>
-              <script type="module" src="/src/main.jsx"></script>
-            </body>
-          </html>
-          EOL
-          fi
+          # Backup original file
+          cp src/App.js src/App.js.backup
+          
+          # Replace Leaf component with fixed version
+          sed -i '/const Leaf = (props) => (/,/^);/c\
+const Leaf = (props) => (\n  <svg \n    {...props} \n    viewBox="0 0 24 24" \n    fill="none" \n    stroke="currentColor" \n    strokeWidth="2"\n    strokeLinecap="round" \n    strokeLinejoin="round"\n  >\n    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />\n    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />\n  </svg>\n);' src/App.js
 
-          # Create main.jsx if missing
-          if [ ! -f "src/main.jsx" ]; then
-            cat > src/main.jsx << 'EOL'
-          import React from 'react'
-          import ReactDOM from 'react-dom/client'
-          import App from './App.js'
-          import './index.css'
+      - name: Create required files
+        run: |
+          # Create main.jsx dengan import yang benar
+          cat > src/main.jsx << 'EOL'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.js'
+import './index.css'
 
-          ReactDOM.createRoot(document.getElementById('root')).render(
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>,
-          )
-          EOL
-          fi
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+EOL
 
-          # Create vite.config.js if missing
-          if [ ! -f "vite.config.js" ]; then
-            cat > vite.config.js << 'EOL'
-          import { defineConfig } from 'vite'
-          import react from '@vitejs/plugin-react'
+          # Create index.html
+          cat > index.html << 'EOL'
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BatikCraft - Traditional Batik E-Commerce</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+EOL
 
-          export default defineConfig({
-            plugins: [react()],
-            base: '/batik-app/',
-            build: {
-              outDir: 'dist'
-            }
-          })
-          EOL
-          fi
+          # Create vite.config.js
+          cat > vite.config.js << 'EOL'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/batik-app/',
+  build: {
+    outDir: 'dist'
+  }
+})
+EOL
 
       - name: Build project
         run: npm run build
@@ -79,4 +82,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist  # Ganti dari 'build' ke 'dist' untuk Vite
+          folder: dist
