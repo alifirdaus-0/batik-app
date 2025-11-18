@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/batik-app/static/css/main.cf890fdb.css",
+    "main.css": "/batik-app/static/css/main.31e88e5f.css",
     "main.js": "/batik-app/static/js/main.66456f4d.js",
     "index.html": "/batik-app/index.html",
-    "main.cf890fdb.css.map": "/batik-app/static/css/main.cf890fdb.css.map",
+    "main.31e88e5f.css.map": "/batik-app/static/css/main.31e88e5f.css.map",
     "main.66456f4d.js.map": "/batik-app/static/js/main.66456f4d.js.map"
   },
   "entrypoints": [
-    "static/css/main.cf890fdb.css",
+    "static/css/main.31e88e5f.css",
     "static/js/main.66456f4d.js"
   ]
 }
