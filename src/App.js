@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, User, Heart, Star, Menu, X, Filter, ChevronDown, Plus, Minus, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Send } from 'lucide-react';
 
+// Add Leaf icon component OUTSIDE of App component
+const Leaf = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13.5 13 12" />
+  </svg>
+);
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [cartItems, setCartItems] = useState([]);
@@ -95,7 +103,8 @@ const App = () => {
       sizes: ["One Size"]
     }
   ];
-   useEffect(() => {
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setShowWelcomePopup(true);
     }, 1000);
@@ -707,9 +716,7 @@ const App = () => {
       </section>
     </div>
   );
-  // ... your existing renderHomePage, renderShopPage, renderAboutPage, renderContactPage functions
 
-  // ADD WELCOME POPUP COMPONENT HERE - Paste your entire WelcomePopup code
   const WelcomePopup = () => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 batik-pattern">
       <div className="bg-white rounded-3xl max-w-md w-full p-8 text-center animate-fade-in shadow-2xl border-2 border-amber-200">
@@ -941,7 +948,8 @@ const App = () => {
         </div>
       </footer>
 
-    {showWelcomePopup && <WelcomePopup />}
+      {/* Welcome Popup */}
+      {showWelcomePopup && <WelcomePopup />}
 
       {/* Product Modal */}
       {selectedProduct && (
@@ -1078,13 +1086,5 @@ const App = () => {
     </div>
   );
 };
-
-// Add Leaf icon since it's not in lucide-react
-const Leaf = (props) => (
-  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13.5 13 12" />
-  </svg>
-);
 
 export default App;
