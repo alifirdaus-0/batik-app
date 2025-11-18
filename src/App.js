@@ -12,6 +12,8 @@ const App = () => {
   const [quantity, setQuantity] = useState(1);
   const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '' });
 
+  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
+
   // Mock product data with batik theme
   const products = [
     {
@@ -93,6 +95,13 @@ const App = () => {
       sizes: ["One Size"]
     }
   ];
+   useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcomePopup(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const categories = [
     { id: 'all', name: 'All Products' },
@@ -696,6 +705,74 @@ const App = () => {
           </div>
         </div>
       </section>
+    </div>
+  );
+  // ... your existing renderHomePage, renderShopPage, renderAboutPage, renderContactPage functions
+
+  // ADD WELCOME POPUP COMPONENT HERE - Paste your entire WelcomePopup code
+  const WelcomePopup = () => (
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 batik-pattern">
+      <div className="bg-white rounded-3xl max-w-md w-full p-8 text-center animate-fade-in shadow-2xl border-2 border-amber-200">
+        {/* Batik Inspired Header */}
+        <div className="relative mb-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-amber-200"></div>
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-white px-4 text-3xl">✨</span>
+          </div>
+        </div>
+        
+        <h2 className="text-4xl font-bold text-amber-900 mb-4 font-serif">
+          Welcome to BatikCraft
+        </h2>
+        
+        <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+          Where traditional batik art meets modern elegance
+        </p>
+
+        {/* Team Section with Avatars */}
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 mb-8 border border-amber-100">
+          <h3 className="text-xl font-semibold text-amber-800 mb-6">
+            Crafted with Passion by:
+          </h3>
+          
+          <div className="space-y-4">
+            <div className="flex items-center justify-start space-x-4 bg-white rounded-xl p-4 shadow-sm">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                1
+              </div>
+              <span className="text-amber-900 font-medium text-lg">Nama 1</span>
+            </div>
+            
+            <div className="flex items-center justify-start space-x-4 bg-white rounded-xl p-4 shadow-sm">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                2
+              </div>
+              <span className="text-amber-900 font-medium text-lg">Nama 2</span>
+            </div>
+            
+            <div className="flex items-center justify-start space-x-4 bg-white rounded-xl p-4 shadow-sm">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                3
+              </div>
+              <span className="text-amber-900 font-medium text-lg">Nama 3</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Button */}
+        <button
+          onClick={() => setShowWelcomePopup(false)}
+          className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg mb-4"
+        >
+          🎨 Explore Batik Collection
+        </button>
+
+        <p className="text-xs text-gray-500">
+          Preserving Indonesian cultural heritage through digital innovation
+        </p>
+      </div>
     </div>
   );
 
